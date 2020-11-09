@@ -7,9 +7,18 @@
    <body>
       <script type="text/javascript" src='api_key.js'></script>
       <script type="text/javascript">
-         console.log(fetch('https://pro-api.coinmarketcap.com/v1/' +
-         'cryptocurrency/map?CMC_PRO_API_KEY=' + api.key));
-
+         fetch('https://pro-api.coinmarketcap.com/v1/' +
+         'cryptocurrency/map?CMC_PRO_API_KEY=' + api_key.key)
+         .then((response) => {
+            if(!response.ok) throw new Error('Erro ao executar a requisição, status ' + response.status);
+            return response.json();
+         })
+         .then((api) => {
+            console.log(api)
+         })
+         .catch((error) => {
+            console.error(error.message);
+         });
       </script>
    </body>
 </html>
